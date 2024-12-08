@@ -3,6 +3,7 @@ package Model;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -119,14 +120,14 @@ public class Model {
 
     // Save date to binary file if required
     public void saveData() throws IOException {
-        if(iRepository instanceof BinaryRepository) {
-            try (FileOutputStream fileOutputStream = new FileOutputStream("repository.bin")) {
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                objectOutputStream.writeObject(iRepository);
-                objectOutputStream.close();
-            } catch (IOException e) {
-                throw e;
-            }
+        try (FileOutputStream fileOutputStream = new FileOutputStream("repository.bin");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+            objectOutputStream.writeObject(iRepository);
+            objectOutputStream.close();
+        } catch (NotSerializableException e) {
+            return; // Skips if repository is not serializable
+        } catch (IOException e) {
+            throw e;
         }
     }
 
