@@ -6,7 +6,7 @@ This document outlines the design and functionality of a program called **jTasks
 
 **Design Choices**
 
-Before going into the details of how the program works Iwanted to highlight some of the design choices that Imade throughout the program:
+Before going into the details of how the program works I wanted to highlight some of the design choices that Imade throughout the program:
 
 **Storing tasks as a HashMap in BinaryRepository:** Storing tasks as a HashMap allows for O(1)search time when searching by the UUID identifier.
 
