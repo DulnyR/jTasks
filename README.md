@@ -1,4 +1,4 @@
-**jTasks:A task application developed in Java with third-party support forNotion**
+**jTasks: A task application developed in Java with third-party support forNotion**
 
 **Introduction**
 
